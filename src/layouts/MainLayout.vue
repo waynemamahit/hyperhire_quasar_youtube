@@ -52,13 +52,13 @@ const menus = ref([
             <q-btn rounded flat icon="search" />
           </template>
         </q-input>
-        <q-btn round flat icon="mic" />
+        <q-btn round flat icon="mic" class="q-mx-md" />
         <q-space />
-        <q-btn dense flat round icon="video_call" class="q-mx-8" />
-        <q-btn dense flat round icon="notifications" class="q-mx-8">
+        <q-btn dense flat round icon="video_call" class="q-mx-md" />
+        <q-btn dense flat round icon="notifications" class="q-mx-md">
           <q-badge color="red" rounded floating>+4</q-badge>
         </q-btn>
-        <q-btn dense flat round class="q-mx-8">
+        <q-btn dense flat round class="q-mx-md">
           <q-avatar>
             <q-img src="https://cdn.quasar.dev/img/boy-avatar.png" />
           </q-avatar>
