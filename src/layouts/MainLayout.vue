@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useQuasar } from 'quasar';
 import AppLogo from 'src/components/AppLogo.vue';
+import SearchWrapper from 'src/components/SearchWrapper.vue';
 import { ref } from 'vue';
 
+const $q = useQuasar();
 const drawer = ref(true);
 const miniDrawer = ref(true);
-const onSearch = ref(false);
 const menus = ref([
   {
     name: 'home',
@@ -31,38 +33,32 @@ const menus = ref([
 
 <template>
   <q-layout view="hHh LpR lff" class="q-py-4">
-    <q-header bordered class="bg-white text-black">
+    <q-header bordered class="bg-white text-black q-px-xs">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="drawer = !drawer" />
-        <q-toolbar-title>
+        <q-btn
+          dense
+          flat
+          round
+          icon="menu"
+          :size="$q.screen.xs || $q.screen.sm ? 'sm' : 'md'"
+          @click="drawer = !drawer"
+        />
+        <q-toolbar-title class="q-px-sm">
           <AppLogo />
         </q-toolbar-title>
-        <q-space />
-        <q-input
+        <q-space v-if="$q.screen.md" />
+        <SearchWrapper />
+        <q-space v-if="$q.screen.md" />
+        <q-btn dense flat round icon="more_vert" class="q-mx-sm" />
+        <q-btn
+          outline
           rounded
-          outlined
-          @focus="onSearch = true"
-          @blur="onSearch = false"
+          icon="account_circle"
+          class="text-primary q-px-sm"
         >
-          <template v-slot:prepend>
-            <q-icon v-if="onSearch" name="search" />
-          </template>
-          <template v-slot:append>
-            <q-icon v-if="!onSearch" name="keyboard" />
-            <q-btn rounded flat icon="search" />
-          </template>
-        </q-input>
-        <q-btn round flat icon="mic" class="q-mx-md" />
-        <q-space />
-        <q-btn dense flat round icon="video_call" class="q-mx-md" />
-        <q-btn dense flat round icon="notifications" class="q-mx-md">
-          <q-badge color="red" rounded floating>+4</q-badge>
+          <span v-if="$q.screen.md" class="q-px-sm">Sign In</span>
         </q-btn>
-        <q-btn dense flat round class="q-mx-md">
-          <q-avatar>
-            <q-img src="https://cdn.quasar.dev/img/boy-avatar.png" />
-          </q-avatar>
-        </q-btn>
+        <q-btn dense flat round icon="invert_colors" class="q-mx-sm" />
       </q-toolbar>
     </q-header>
 
@@ -77,7 +73,7 @@ const menus = ref([
       :breakpoint="500"
       bordered
     >
-      <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
+      <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: '0' }">
         <q-list padding>
           <q-item
             :key="menuIndex"

@@ -1,5 +1,5 @@
 <template>
-  <span style="width: 100px; height: 30px; display: block">
+  <span style="width: 90px; height: 30px; display: block">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       id="yt-logo-updated-svg_yt4"
